@@ -1,5 +1,6 @@
 <?php 
 if($_POST){
+    chmod('push_notification.txt', '0777');
 // the message
 $msg = json_encode($_POST);
 // send email
