@@ -230,8 +230,9 @@ $channel->setAddress('https://ibgcalendar.herokuapp.com/index.php');
 
 try {
     
-    $watchEvent = $cal->events->watch('vipin.sharma@infobeans.com', $channel);
+    $watchEvent = $cal->events->watch('infobeans.com_3439353333333132383132@resource.calendar.google.com', $channel);
     echo '<pre>';print_r($watchEvent);echo '</pre>';
+    echo '<pre>';print_r($channelID);echo '</pre>';
     
 } catch (Exception $e) {
        echo $e->getMessage();
