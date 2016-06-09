@@ -2,7 +2,7 @@
 require 'PHPMailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
-
+ 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 //$mail->isSMTP();                                      // Set mailer to use SMTP
