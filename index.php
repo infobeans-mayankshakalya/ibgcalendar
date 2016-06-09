@@ -1,21 +1,45 @@
 <?php 
+require 'PHPMailer/PHPMailerAutoload.php';
+
+$mail = new PHPMailer;
+
+//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'vipin.shm@gmail.com';                 // SMTP username
+$mail->Password = 'Vipin123';                           // SMTP password
+$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                                    // TCP port to connect to
+
+$mail->setFrom('vipin.shm@gmail.com', 'vipin sharma');
+$mail->addAddress('vipin.sharma@infobeans.com', 'Vipin Sharma');     // Add a recipient
+$mail->addReplyTo('vipin.shm@gmail.com', 'Information');
+
+$mail->Subject = 'GOOGLE API RESPONSE';
+
 if($_POST){
-    chmod('push_notification.txt', '0777');
+    
 // the message
 $msg = json_encode($_POST);
 // send email
-$myfile = fopen("push_notification.txt", "w") or die("Unable to open file!");
-$txt = "POST DATA:\n";
-fwrite($myfile, $txt.$msg);
-fclose($myfile);
+
+$mail->Body    = $msg;
+$mail->AltBody = 'GOOGLE API RESPONSE';
+
+
 }else{
-        chmod('push_notification.txt', '0777');
-// the message
-$msg = "no data found\nTime: ".date('H:i A',time());
-// send email
-$myfile = fopen("push_notification.txt", "w") or die("Unable to open file!");
-fwrite($myfile, $msg);
-fclose($myfile);
+
+$mail->Body    = 'NO POST DATA';
+$mail->AltBody = 'GOOGLE API RESPONSE';
+}
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
 }
 
 ?>
