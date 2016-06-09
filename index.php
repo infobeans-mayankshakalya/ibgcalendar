@@ -27,14 +27,14 @@ $msg = 'post data found';
 
 # Now let's use the connection for something silly just to prove it works:
 //pg_query($pg_conn, "CREATE TABLE postdata( id integer PRIMARY KEY NOT NULL, post_data text NOT NULL);");
-pg_query($pg_conn, "INSERT INTO postdata(id, post_data) values (3,'$msg')");
+pg_query($pg_conn, "INSERT INTO postdata(id, post_data) values (4,'$msg')");
 
 die;
 
 
 }else{
-$msg = 'post data found';
-pg_query($pg_conn, "INSERT INTO postdata(id, post_data) values (3,'$msg')");
+//$msg = 'post data found';
+//pg_query($pg_conn, "INSERT INTO postdata(id, post_data) values (3,'$msg')");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 echo 'view data';
 print "<pre>\n";
