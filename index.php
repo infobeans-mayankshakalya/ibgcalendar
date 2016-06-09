@@ -34,7 +34,8 @@ die;
 
 }else{
 //$msg = 'post data found';
-pg_query($pg_conn, "ALTER TABLE postdata DROP COLUMN post_data;");
+pg_query($pg_conn, "ALTER TABLE postdata ADD COLUMN post_data text;");
+pg_query($pg_conn, "ALTER TABLE postdata DROP COLUMN id;");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 echo 'view data';
 print "<pre>\n";
