@@ -13,7 +13,7 @@ $client->setScopes("https://www.googleapis.com/auth/calendar.readonly","https://
 // client id, client secret, and to register your redirect uri.
 // $client->setClientId('insert_your_oauth2_client_id');
 // $client->setClientSecret('insert_your_oauth2_client_secret');
-// $client->setRedirectUri('insert_your_oauth2_redirect_uri');
+ $client->setRedirectUri('https://ibgcalendar.herokuapp.com/spark/examples/calendar/simple.php');
 // $client->setDeveloperKey('insert_your_developer_key');
 
 
