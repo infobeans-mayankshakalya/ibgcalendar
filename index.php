@@ -19,7 +19,8 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 if($_POST){
     
 // the message
-$msg = json_encode($_POST);
+//$msg = json_encode($_POST);
+$msg = 'post data found';
 // send email
 
 # Here we establish the connection. Yes, that's all.
