@@ -222,7 +222,7 @@ if ($client->getAccessToken()) {
 		#var_dump(json_encode($event));
 
 */
-    $channelID = "20fdedbf0-a845-11e3-1515e2-0800200c9a6689111as";
+    $channelID = "Infobeans-Caledar-".  date('His',  time());
 $channel->setId($channelID);
 $channel->setType('web_hook');
 $channel->setAddress('https://ibgcalendar.herokuapp.com/index.php');
