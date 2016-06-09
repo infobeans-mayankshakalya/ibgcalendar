@@ -6,8 +6,9 @@ function pg_connection_string_from_database_url() {
     $user = "tcpqujlrgdxpqx";
     $pass = "b_wZht5KuCU1WjqZx0mLX7XkOK";
     $host = "ec2-54-163-238-222.compute-1.amazonaws.com";
+    $path = "d95ic7danf4fsl";
   extract(parse_url($_ENV["postgres://tcpqujlrgdxpqx:b_wZht5KuCU1WjqZx0mLX7XkOK@ec2-54-163-238-222.compute-1.amazonaws.com:5432/d5ejpv5kc8s1je"]));
-  return "user=$user password=$pass host=$host dbname=" . substr($path, 1); # <- you may want to add sslmode=require there too
+  return "user=$user password=$pass host=$host dbname=" . $path; # <- you may want to add sslmode=require there too
 }
 # Here we establish the connection. Yes, that's all.
 $pg_conn = pg_connect(pg_connection_string_from_database_url());
