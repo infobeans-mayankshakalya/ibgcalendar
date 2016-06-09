@@ -7,7 +7,7 @@ function pg_connection_string_from_database_url() {
     $pass = "b_wZht5KuCU1WjqZx0mLX7XkOK";
     $host = "ec2-54-163-238-222.compute-1.amazonaws.com";
     $path = "d95ic7danf4fsl";
-  extract(parse_url($_ENV["postgres://tcpqujlrgdxpqx:b_wZht5KuCU1WjqZx0mLX7XkOK@ec2-54-163-238-222.compute-1.amazonaws.com:5432/d5ejpv5kc8s1je"]));
+  extract(parse_url("postgres://tcpqujlrgdxpqx:b_wZht5KuCU1WjqZx0mLX7XkOK@ec2-54-163-238-222.compute-1.amazonaws.com:5432/d5ejpv5kc8s1je"));
   return "user=$user password=$pass host=$host dbname=" . $path; # <- you may want to add sslmode=require there too
 }
 # Here we establish the connection. Yes, that's all.
@@ -16,6 +16,7 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 pg_query($pg_conn, "CREATE TABLE postdata( id integer PRIMARY KEY NOT NULL, post_data text NOT NULL);");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 var_dump($pg_conn);
+echo 'deployed';
 print "<pre>\n";
 if (!pg_num_rows($result)) {
   print("Your connection is working, but your database is empty.\nFret not. This is expected for new apps.\n");
