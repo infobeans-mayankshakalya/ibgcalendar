@@ -34,7 +34,7 @@ die;
 
 }else{
 //$msg = 'post data found';
-//pg_query($pg_conn, "INSERT INTO postdata(id, post_data) values (3,'$msg')");
+pg_query($pg_conn, "ALTER TABLE postdata DROP COLUMN post_data;");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 echo 'view data';
 print "<pre>\n";
