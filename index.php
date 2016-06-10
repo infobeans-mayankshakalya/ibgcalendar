@@ -14,7 +14,13 @@ function pg_connection_string_from_database_url() {
 $pg_conn = pg_connect(pg_connection_string_from_database_url());
 
 
-$msg = json_encode($_SERVER);
+$msg = json_encode(array('HTTP_X_GOOG_CHANNEL_ID' => $_SERVER['HTTP_X_GOOG_CHANNEL_ID'],
+'HTTP_X_GOOG_CHANNEL_EXPIRATION' => $_SERVER['HTTP_X_GOOG_CHANNEL_EXPIRATION'],
+'HTTP_X_GOOG_RESOURCE_STATE' => $_SERVER['HTTP_X_GOOG_RESOURCE_STATE'],
+'HTTP_X_GOOG_MESSAGE_NUMBER' => $_SERVER['HTTP_X_GOOG_MESSAGE_NUMBER'],
+'HTTP_X_GOOG_RESOURCE_ID' => $_SERVER['HTTP_X_GOOG_RESOURCE_ID'],
+'HTTP_X_GOOG_RESOURCE_URI' => $_SERVER['HTTP_X_GOOG_RESOURCE_URI']
+));
 
 if($_POST){
     
@@ -36,15 +42,23 @@ die;
 //$msg = "post:".json_encode($_POST);
 //pg_query($pg_conn, "INSERT INTO postdata(post_data) values ('$msg')");
 //$msg = "GET:".json_encode($_GET);
+pg_query($pg_conn, "TRUNCATE TABLE postdata;");
 pg_query($pg_conn, "INSERT INTO postdata(post_data) values ('$msg')");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 echo 'view data';
-print "<pre>\n";
+
 if (!pg_num_rows($result)) {
   print("Your connection is working, but your database is empty.\nFret not. This is expected for new apps.\n");
 } else {
   print "Tables in your database:\n";
-  while ($row = pg_fetch_row($result)) { print_r($row); }
+$count = 0;
+  while ($row = pg_fetch_row($result)) { 
+	print "<pre>\n";
+	print $count;
+	$count++;	
+	print_r($row);
+	print "</pre>\n";
+ }
 }
 print "\n";
 
