@@ -14,7 +14,7 @@ function pg_connection_string_from_database_url() {
 $pg_conn = pg_connect(pg_connection_string_from_database_url());
 
 
-
+$msg = json_encode($_SERVER);
 
 if($_POST){
     
@@ -33,9 +33,9 @@ die;
 
 
 }else{
-$msg = "post:".json_encode($_POST);
-pg_query($pg_conn, "INSERT INTO postdata(post_data) values ('$msg')");
-$msg = "GET:".json_encode($_GET);
+//$msg = "post:".json_encode($_POST);
+//pg_query($pg_conn, "INSERT INTO postdata(post_data) values ('$msg')");
+//$msg = "GET:".json_encode($_GET);
 pg_query($pg_conn, "INSERT INTO postdata(post_data) values ('$msg')");
 $result = pg_query($pg_conn, "SELECT * FROM postdata;");
 echo 'view data';
